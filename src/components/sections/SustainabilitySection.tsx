@@ -222,6 +222,45 @@ export default function SustainabilitySection() {
         },
       });
 
+      /* ── Social impact stat rows — slide up ── */
+      const statNumbers = sectionRef.current!.querySelectorAll(".stat-number");
+      const statLabels = sectionRef.current!.querySelectorAll(".stat-label");
+      const statLines = sectionRef.current!.querySelectorAll(".stat-line");
+
+      gsap.set(statNumbers, { yPercent: 100, opacity: 0 });
+      gsap.set(statLabels, { yPercent: 60, opacity: 0 });
+      gsap.set(statLines, { scaleX: 0, transformOrigin: "left center" });
+
+      ScrollTrigger.create({
+        trigger: ".impact-stats",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(statNumbers, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+          gsap.to(statLabels, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.12,
+            delay: 0.15,
+            ease: "power3.out",
+          });
+          gsap.to(statLines, {
+            scaleX: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            delay: 0.1,
+            ease: "power2.out",
+          });
+        },
+      });
+
       /* ── Certification badges stagger ── */
       const badges = sectionRef.current!.querySelectorAll(".cert-badge");
       gsap.set(badges, { opacity: 0, y: 20 });
@@ -326,26 +365,50 @@ export default function SustainabilitySection() {
           ))}
         </div>
 
-        {/* ─── Social impact grid ─── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-24">
-          {socialImpact.map((metric, i) => (
-            <div
-              key={i}
-              className="text-center py-6 md:py-8 px-4 rounded-sm bg-midnight/[0.02] border border-midnight/[0.06] hover:bg-midnight/[0.04] transition-all duration-300"
-            >
-              <div className="flex justify-center mb-3">
-                <Heart className="w-5 h-5 text-dark-sand/40" strokeWidth={1.5} />
-              </div>
-              <AnimatedCounter
-                value={metric.value}
-                suffix={metric.suffix}
-                className="text-xl sm:text-2xl md:text-3xl text-gradient-sand-dark"
-              />
-              <p className="mt-2 text-[11px] font-light text-midnight/40 leading-snug px-2">
-                {metric.label}
+        {/* ─── Social impact — two-column: heading left, stats right ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 md:gap-16 mb-24 items-start">
+          {/* Left — heading */}
+          <div className="md:sticky md:top-40">
+            <div className="flex items-center gap-3 mb-4">
+              <Heart className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
+              <p className="text-sm font-medium text-dark-sand/60 uppercase tracking-[0.15em]">
+                Social Impact
               </p>
             </div>
-          ))}
+            <h3 className="text-3xl md:text-4xl font-bold text-gradient-sand-dark leading-tight mb-4">
+              Empowering<br />Communities
+            </h3>
+            <p className="text-sm text-midnight/50 leading-relaxed max-w-[320px]">
+              Supporting productive families, youth empowerment, disability inclusion, and nonprofit partnerships across the Kingdom.
+            </p>
+          </div>
+
+          {/* Right — stacked stat rows */}
+          <div className="impact-stats flex flex-col">
+            {socialImpact.map((metric, i) => (
+              <div key={i} className="relative pb-4 pt-3 md:pb-5 md:pt-4">
+                {/* Row: number left, label right */}
+                <div className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_180px] items-end gap-4">
+                  <div className="overflow-hidden">
+                    <div className="stat-number">
+                      <AnimatedCounter
+                        value={metric.value}
+                        suffix={metric.suffix}
+                        className="text-4xl md:text-[3.5rem] leading-none font-light text-gradient-sand-dark tracking-tight"
+                      />
+                    </div>
+                  </div>
+                  <div className="overflow-hidden">
+                    <p className="stat-label text-[11px] md:text-xs font-medium text-midnight/50 uppercase tracking-wider leading-snug text-right">
+                      {metric.label}
+                    </p>
+                  </div>
+                </div>
+                {/* Divider line */}
+                <div className="stat-line absolute bottom-0 left-0 right-0 h-px bg-dark-sand/20" />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ─── Paperless metric ─── */}
