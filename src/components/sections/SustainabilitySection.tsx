@@ -171,21 +171,18 @@ function BotanicalFern({ className }: { className?: string }) {
    around the title area
    ────────────────────────────────────────────── */
 const botanicalElements = [
-  // Top-left cluster
-  { Component: BotanicalBranch, x: "-6%", y: "-12%", w: "220px", rotate: -12, delay: 0 },
-  { Component: BotanicalSprig, x: "10%", y: "-20%", w: "85px", rotate: 18, delay: 0.15 },
-  // Top-right cluster
-  { Component: BotanicalLeaf1, x: "82%", y: "-15%", w: "110px", rotate: 22, delay: 0.1 },
-  { Component: BotanicalFern, x: "90%", y: "0%", w: "140px", rotate: -10, delay: 0.25 },
-  // Left side
-  { Component: BotanicalLeaf2, x: "-3%", y: "25%", w: "95px", rotate: -20, delay: 0.2 },
-  // Right side
-  { Component: BotanicalSprig, x: "93%", y: "35%", w: "80px", rotate: 12, delay: 0.3 },
-  // Bottom-left
-  { Component: BotanicalFern, x: "0%", y: "72%", w: "130px", rotate: 22, delay: 0.18 },
-  // Bottom-right
-  { Component: BotanicalLeaf1, x: "85%", y: "68%", w: "100px", rotate: -15, delay: 0.22 },
-  { Component: BotanicalBranch, x: "75%", y: "82%", w: "180px", rotate: 8, delay: 0.35 },
+  // Top-left — single branch, pulled far left
+  { Component: BotanicalBranch, x: "-12%", y: "-15%", w: "180px", rotate: -12, delay: 0 },
+  // Top-right — single leaf, pulled far right
+  { Component: BotanicalLeaf1, x: "92%", y: "-18%", w: "100px", rotate: 22, delay: 0.1 },
+  // Mid-left — sprig, well below the branch
+  { Component: BotanicalSprig, x: "-8%", y: "45%", w: "75px", rotate: -15, delay: 0.2 },
+  // Mid-right — fern, offset from top-right leaf
+  { Component: BotanicalFern, x: "94%", y: "38%", w: "120px", rotate: -10, delay: 0.25 },
+  // Bottom-left — fern
+  { Component: BotanicalFern, x: "-5%", y: "85%", w: "110px", rotate: 20, delay: 0.18 },
+  // Bottom-right — branch
+  { Component: BotanicalBranch, x: "88%", y: "78%", w: "160px", rotate: 8, delay: 0.3 },
 ];
 
 export default function SustainabilitySection() {
