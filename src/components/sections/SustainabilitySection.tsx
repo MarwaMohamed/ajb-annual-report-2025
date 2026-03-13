@@ -140,8 +140,8 @@ export default function SustainabilitySection() {
         <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
           <div className="relative w-full h-[50vh] lg:h-full overflow-hidden">
             <Image
-              src="/images/sustainability/woman-tablet.jpg"
-              alt="Banking professional using digital services"
+              src="/images/sustainability/sustainability-hero.png"
+              alt="AJB sustainability visual"
               fill
               className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 45vw"
