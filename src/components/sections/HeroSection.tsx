@@ -9,7 +9,7 @@ export default function HeroSection() {
   const bgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
+  // logoRef removed — logo moved to navbar
   const overlayRef = useRef<HTMLDivElement>(null);
   const shape2Ref = useRef<HTMLDivElement>(null);
   const shape3Ref = useRef<HTMLDivElement>(null);
@@ -21,15 +21,7 @@ export default function HeroSection() {
       // Loading sequence timeline
       const tl = gsap.timeline();
 
-      // Step 1: Fade in logo
-      tl.fromTo(
-        logoRef.current,
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" },
-        0.3
-      );
-
-      // Step 2: Fade overlay to reveal bg
+      // Step 1: Fade overlay to reveal bg
       tl.to(
         overlayRef.current,
         { opacity: 0, duration: 1.5, ease: "power2.inOut" },
@@ -52,16 +44,7 @@ export default function HeroSection() {
 
       // Step 4: Reveal title character by character
       if (titleRef.current) {
-        const text = "Wealth Grows Here";
-        titleRef.current.innerHTML = text
-          .split("")
-          .map(
-            (char) =>
-              `<span class="inline-block" style="opacity:0; transform:translateY(40px)">${char === " " ? "&nbsp;" : char}</span>`
-          )
-          .join("");
-
-        const chars = titleRef.current.querySelectorAll("span");
+        const chars = titleRef.current.querySelectorAll(".char");
         tl.to(
           chars,
           {
@@ -177,24 +160,20 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-20 section-container h-full flex flex-col justify-center">
-        {/* Logo */}
-        <div ref={logoRef} className="mb-12 opacity-0">
-          <Image
-            src="/images/logo/ajb-white.png"
-            alt="Aljazira Bank"
-            width={180}
-            height={48}
-            className="h-10 md:h-12 w-auto brightness-0 invert"
-            priority
-          />
-        </div>
-
         {/* Title */}
         <h1
           ref={titleRef}
           className="text-hero font-black text-white max-w-[900px] leading-[1.05] tracking-tight whitespace-nowrap"
         >
-          Wealth Grows Here
+          {"Wealth Grows Here".split("").map((char, i) => (
+            <span
+              key={i}
+              className="char inline-block"
+              style={{ opacity: 0, transform: "translateY(40px)" }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
         </h1>
 
         {/* Subtitle */}

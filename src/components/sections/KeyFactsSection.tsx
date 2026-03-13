@@ -173,64 +173,115 @@ function SectionHeading({
 }
 
 /* ──────────────────────────────────────────────
-   Comparison Table Row — animated on scroll
+   Comparison Bar Row — horizontal bars, param.design style
    ────────────────────────────────────────────── */
-function ComparisonRow({
+function ComparisonBarRow({
   metric,
   before,
   after,
+  beforeNum,
+  afterNum,
   index,
 }: {
   metric: string;
   before: string;
   after: string;
+  beforeNum?: number;
+  afterNum?: number;
   index: number;
 }) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const leftBarRef = useRef<HTMLDivElement>(null);
+  const rightBarRef = useRef<HTMLDivElement>(null);
+
+  // Calculate bar widths as percentage of max
+  const maxVal = Math.max(beforeNum || 0, afterNum || 0) || 1;
+  const leftPct = ((beforeNum || 0) / maxVal) * 100;
+  const rightPct = ((afterNum || 0) / maxVal) * 100;
 
   useEffect(() => {
     if (!rowRef.current) return;
-    gsap.set(rowRef.current, { opacity: 0, y: 30 });
+
+    // Initial state
+    gsap.set(rowRef.current, { opacity: 0, y: 20 });
+    if (leftBarRef.current) gsap.set(leftBarRef.current, { width: "0%" });
+    if (rightBarRef.current) gsap.set(rightBarRef.current, { width: "0%" });
 
     const st = ScrollTrigger.create({
       trigger: rowRef.current,
-      start: "top 90%",
+      start: "top 88%",
       once: true,
       onEnter: () => {
+        const delay = index * 0.12;
+        // Fade in row
         gsap.to(rowRef.current, {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          delay: index * 0.08,
+          duration: 0.6,
+          delay,
           ease: "power3.out",
         });
+        // Animate bars
+        if (leftBarRef.current) {
+          gsap.to(leftBarRef.current, {
+            width: `${leftPct}%`,
+            duration: 1.2,
+            delay: delay + 0.2,
+            ease: "power2.out",
+          });
+        }
+        if (rightBarRef.current) {
+          gsap.to(rightBarRef.current, {
+            width: `${rightPct}%`,
+            duration: 1.2,
+            delay: delay + 0.2,
+            ease: "power2.out",
+          });
+        }
       },
     });
 
     return () => st.kill();
-  }, [index]);
+  }, [index, leftPct, rightPct]);
 
   return (
-    <div
-      ref={rowRef}
-      className="w-full min-h-[56px]"
-      style={{ display: "flex", opacity: 0 }}
-    >
-      {/* Metric label — 40% */}
-      <div className="w-2/5 pl-3 pr-3 pb-4 pt-5 border-r-2 border-midnight/[0.06] border-b-2" style={{ display: "flex", alignItems: "flex-end" }}>
-        <span className="text-midnight/70 text-sm md:text-[15px] font-medium leading-snug">
-          {metric}
-        </span>
-      </div>
-      {/* Before value — 30% */}
-      <div className="w-[30%] px-3 pb-4 pt-5 border-r-2 border-midnight/[0.06] border-b-2" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <span className="text-midnight/50 text-sm md:text-base font-medium tabular-nums text-center">
+    <div ref={rowRef} className="flex items-center gap-3 md:gap-5 py-3" style={{ opacity: 0 }}>
+      {/* Left side — 2020 value + bar (right-aligned, grows right-to-left) */}
+      <div className="w-[38%] flex items-center justify-end gap-3">
+        <span className="text-midnight/40 text-xs md:text-sm font-medium tabular-nums whitespace-nowrap shrink-0">
           {before}
         </span>
+        <div className="relative w-full h-10 md:h-12 flex justify-end">
+          <div
+            ref={leftBarRef}
+            className="h-full rounded-l-md bg-midnight/[0.12]"
+            style={{ width: "0%" }}
+          />
+        </div>
       </div>
-      {/* After value — 30% */}
-      <div className="w-[30%] px-3 pb-4 pt-5 border-r-2 border-midnight/[0.06] border-b-2" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <span className="text-dark-sand font-bold text-sm md:text-base tabular-nums text-center">
+
+      {/* Center — metric label + connector */}
+      <div className="w-[24%] flex flex-col items-center gap-1 shrink-0">
+        <div className="w-px h-3 bg-midnight/[0.12]" />
+        <span className="text-midnight/60 text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] text-center leading-tight">
+          {metric}
+        </span>
+        <div className="w-px h-3 bg-midnight/[0.12]" />
+      </div>
+
+      {/* Right side — bar + 2025 value (left-aligned, grows left-to-right) */}
+      <div className="w-[38%] flex items-center gap-3">
+        <div className="relative w-full h-10 md:h-12 flex justify-start">
+          <div
+            ref={rightBarRef}
+            className="h-full rounded-r-md"
+            style={{
+              width: "0%",
+              background: "linear-gradient(90deg, #8c684a 0%, #b27f59 60%, #c99a74 100%)",
+            }}
+          />
+        </div>
+        <span className="text-dark-sand text-xs md:text-sm font-bold tabular-nums whitespace-nowrap shrink-0">
           {after}
         </span>
       </div>
@@ -269,7 +320,7 @@ export default function KeyFactsSection() {
     <section
       id="key-facts"
       ref={sectionRef}
-      className="section-light relative overflow-hidden"
+      className="section-light relative overflow-x-clip"
       style={{
         background:
           "radial-gradient(ellipse at 50% 50%, rgba(185,134,102,0.04) 0%, transparent 50%), linear-gradient(180deg, #FAF8F5 0%, #F5F0EB 50%, #FAF8F5 100%)",
@@ -292,7 +343,7 @@ export default function KeyFactsSection() {
               ────────────────────────────────── */}
           <div
             ref={leftColRef}
-            className="hidden lg:flex lg:w-[40%] xl:w-[38%]"
+            className="hidden lg:block lg:w-[40%] xl:w-[38%] self-stretch"
           >
             <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
               {/* 3D rotating placeholder — will be replaced with real 3D logo */}
@@ -307,22 +358,22 @@ export default function KeyFactsSection() {
                   Scroll to explore
                 </p>
                 <div className="mt-4 flex items-center gap-3 justify-center">
-                  <div className="w-10 h-px bg-dark-sand/25" />
+                  <div className="w-12 h-[2px] bg-dark-sand/40" />
                   <div
-                    className="w-2 h-2 rounded-full bg-dark-sand/50"
+                    className="w-2.5 h-2.5 rounded-full bg-dark-sand/70"
                     style={{
                       transform: `scale(${1 + scrollProgress * 0.6})`,
-                      opacity: 0.5 + scrollProgress * 0.5,
+                      opacity: 0.7 + scrollProgress * 0.3,
                     }}
                   />
-                  <div className="w-10 h-px bg-dark-sand/25" />
+                  <div className="w-12 h-[2px] bg-dark-sand/40" />
                 </div>
               </div>
 
               {/* Vertical progress line */}
-              <div className="absolute left-1/2 bottom-8 w-[2px] h-28 bg-midnight/[0.08] -translate-x-1/2 rounded-full">
+              <div className="mx-auto mt-6 w-[3px] h-[30vh] bg-midnight/[0.15] rounded-full">
                 <div
-                  className="w-full bg-gradient-to-b from-dark-sand/60 to-dark-sand/20 rounded-full"
+                  className="w-full bg-gradient-to-b from-dark-sand to-dark-sand/40 rounded-full"
                   style={{
                     height: `${scrollProgress * 100}%`,
                     transition: "height 0.15s linear",
@@ -348,7 +399,7 @@ export default function KeyFactsSection() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-6">
                 {heroMetrics.map((metric, i) => (
                   <RevealBlock key={i} delay={i * 0.15}>
-                    <div className="relative p-5 rounded-lg border border-midnight/[0.06] bg-white/80 hover:bg-white hover:shadow-sm transition-all duration-300 overflow-hidden">
+                    <div className="relative p-5 rounded-lg transition-all duration-300 overflow-hidden">
                       <AnimatedCounter
                         value={metric.value}
                         prefix={metric.prefix}
@@ -378,7 +429,7 @@ export default function KeyFactsSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {financialGrid.map((metric, i) => (
                   <RevealBlock key={i} delay={(i % 4) * 0.1}>
-                    <div className="group relative p-5 rounded-lg border border-midnight/[0.06] bg-white/80 hover:bg-white hover:border-dark-sand/25 hover:shadow-sm transition-all duration-500">
+                    <div className="group relative p-5 rounded-lg transition-all duration-500">
                       <div className="flex items-baseline justify-between">
                         <AnimatedCounter
                           value={metric.value}
@@ -468,62 +519,44 @@ export default function KeyFactsSection() {
                   Bank Overview
                 </span>
                 <h3 className="text-midnight/85 text-[clamp(1.6rem,3.5vw,2.75rem)] font-bold uppercase tracking-[0.08em] leading-tight">
-                  AJB&apos;s Growth Revolution
+                  Milestones of Growth
                 </h3>
               </RevealBlock>
 
-              {/* ── Logo icon area ── */}
-              <RevealBlock delay={0.15} className="flex justify-center mb-12">
-                <div className="relative w-full max-w-[400px] aspect-square flex items-center justify-center">
-                  {/* Background glow */}
-                  <div
-                    className="absolute inset-0 rounded-full opacity-[0.06]"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 50% 50%, #8c684a 0%, transparent 70%)",
-                    }}
-                  />
-                  {/* Logo */}
-                  <Image
-                    src="/images/logo/ajb-white.png"
-                    alt="Bank AlJazira"
-                    width={240}
-                    height={240}
-                    className="relative z-10 w-40 h-40 md:w-56 md:h-56 object-contain brightness-0 opacity-[0.08]"
-                  />
+              {/* ── Header row: 2020 | VS | 2025 ── */}
+              <RevealBlock delay={0.1} className="mb-6">
+                <div className="flex items-center gap-3 md:gap-5">
+                  {/* 2020 side */}
+                  <div className="w-[38%] flex justify-end">
+                    <span className="inline-block px-4 py-1.5 rounded-full border border-midnight/[0.12] text-midnight/40 text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">
+                      2020
+                    </span>
+                  </div>
+                  {/* VS connector */}
+                  <div className="w-[24%] flex flex-col items-center gap-1">
+                    <div className="w-px h-6 bg-gradient-to-b from-transparent to-midnight/[0.12]" />
+                    <span className="text-dark-sand/60 text-[10px] font-bold tracking-[0.3em] uppercase">VS</span>
+                    <div className="w-px h-6 bg-gradient-to-b from-midnight/[0.12] to-transparent" />
+                  </div>
+                  {/* 2025 side */}
+                  <div className="w-[38%] flex justify-start">
+                    <span className="inline-block px-4 py-1.5 rounded-full border border-dark-sand/30 text-dark-sand text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">
+                      2025
+                    </span>
+                  </div>
                 </div>
               </RevealBlock>
 
-              {/* ── Comparison Table ── */}
-              <div className="w-full px-0 md:px-4">
-                {/* Table header row */}
-                <RevealBlock delay={0.2}>
-                  <div className="w-full min-h-[44px]" style={{ display: "flex" }}>
-                    <div className="w-2/5 pl-3 pr-3 pb-3 border-r-2 border-midnight/[0.08]" style={{ display: "flex", alignItems: "flex-end" }}>
-                      <span className="text-midnight/30 text-[11px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                        Metrics
-                      </span>
-                    </div>
-                    <div className="w-[30%] px-3 pb-3 border-r-2 border-midnight/[0.08]" style={{ display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
-                      <span className="text-midnight/30 text-[11px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                        2020
-                      </span>
-                    </div>
-                    <div className="w-[30%] px-3 pb-3 border-r-2 border-midnight/[0.08]" style={{ display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
-                      <span className="text-dark-sand/60 text-[11px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                        2025
-                      </span>
-                    </div>
-                  </div>
-                </RevealBlock>
-
-                {/* Data rows — animated sequentially */}
+              {/* ── Horizontal bar comparison rows ── */}
+              <div className="space-y-1">
                 {bankComparison.map((row, i) => (
-                  <ComparisonRow
+                  <ComparisonBarRow
                     key={i}
                     metric={row.metric}
                     before={row.before}
                     after={row.after}
+                    beforeNum={row.beforeNum}
+                    afterNum={row.afterNum}
                     index={i}
                   />
                 ))}
@@ -531,7 +564,7 @@ export default function KeyFactsSection() {
 
               {/* ── Experience metrics row (kept) ── */}
               <RevealBlock delay={0.3} className="mt-16">
-                <div className="flex flex-wrap justify-center gap-12 md:gap-20 p-8 rounded-lg border border-midnight/[0.06] bg-white/80">
+                <div className="flex flex-wrap justify-center gap-12 md:gap-20 p-8 rounded-lg">
                   {experienceMetrics.map((metric, i) => (
                     <div key={i} className="text-center">
                       <AnimatedCounter

@@ -81,7 +81,7 @@ export default function StrategySection() {
   return (
     <section id="strategy" ref={sectionRef} className="relative overflow-hidden">
       {/* Key visual shape — decorative background */}
-      <div className="absolute top-[5%] right-[-3%] w-[30%] opacity-[0.08] pointer-events-none hidden lg:block mix-blend-lighten">
+      <div className="absolute top-[5%] right-[-3%] w-[30%] opacity-[0.25] pointer-events-none hidden lg:block mix-blend-lighten">
         <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
       </div>
 
