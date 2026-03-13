@@ -137,19 +137,16 @@ export default function SustainabilitySection() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* ─── LEFT: Sticky image ─── */}
-        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
+        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 bg-[#F0EBE4]">
           <div className="relative w-full h-[50vh] lg:h-full overflow-hidden">
             <Image
               src="/images/sustainability/sustainability-hero.png"
               alt="AJB sustainability visual"
               fill
-              className="object-cover object-center"
+              className="object-contain object-left-bottom"
               sizes="(max-width: 1024px) 100vw, 45vw"
               priority
             />
-            {/* Gradient overlay — blends into the light bg on the right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#FAF8F5]/30 hidden lg:block" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-transparent lg:hidden" />
           </div>
         </div>
 
