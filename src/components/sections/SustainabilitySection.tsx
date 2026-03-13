@@ -201,120 +201,123 @@ export default function SustainabilitySection() {
             </div>
           </div>
 
-          {/* ── Copper divider ── */}
-          <div className="w-16 h-px bg-dark-sand/30 mb-16" />
+        </div>
+      </div>
+      {/* ═══ END two-column layout ═══ */}
 
-          {/* ── Social Impact ── */}
-          <div className="content-block mb-16">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <Heart className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-              <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
-                Social Impact — Empowering Communities
-              </h3>
-            </div>
-            <p className="text-sm text-midnight/45 leading-relaxed mb-8 max-w-[450px] mx-auto text-center">
-              Supporting productive families, youth empowerment, disability inclusion,
-              and nonprofit partnerships across the Kingdom.
-            </p>
+      {/* ═══ Full-width centered sections below ═══ */}
+      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32">
 
-            {/* Stacked stat rows */}
-            <div className="impact-stats flex flex-col">
-              {socialImpact.map((metric, i) => (
-                <div key={i} className="relative pb-4 pt-3 md:pb-5 md:pt-4">
-                  <div className="flex items-end justify-between gap-4">
-                    <div className="overflow-hidden">
-                      <div className="stat-number">
-                        <AnimatedCounter
-                          value={metric.value}
-                          suffix={metric.suffix}
-                          className="text-3xl md:text-4xl leading-none font-light text-gradient-sand-dark tracking-tight"
-                        />
-                      </div>
-                    </div>
-                    <div className="overflow-hidden flex-shrink-0">
-                      <p className="stat-label text-[11px] md:text-xs font-medium text-midnight/45 uppercase tracking-wider leading-snug text-right max-w-[180px]">
-                        {metric.label}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="stat-line absolute bottom-0 left-0 right-0 h-px bg-dark-sand/15" />
-                </div>
-              ))}
+        {/* ── Social Impact ── */}
+        <div className="content-block mb-20">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Heart className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
+            <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
+              Social Impact — Empowering Communities
+            </h3>
+          </div>
+          <p className="text-sm text-midnight/45 leading-relaxed mb-12 max-w-[500px] mx-auto text-center">
+            Supporting productive families, youth empowerment, disability inclusion,
+            and nonprofit partnerships across the Kingdom.
+          </p>
 
-              {/* Paperless metric — same row style */}
-              <div className="relative pb-4 pt-3 md:pb-5 md:pt-4">
+          {/* Stacked stat rows */}
+          <div className="impact-stats flex flex-col max-w-3xl mx-auto">
+            {socialImpact.map((metric, i) => (
+              <div key={i} className="relative pb-4 pt-3 md:pb-5 md:pt-4">
                 <div className="flex items-end justify-between gap-4">
                   <div className="overflow-hidden">
                     <div className="stat-number">
                       <AnimatedCounter
-                        value={paperlessMetric.value}
-                        suffix={paperlessMetric.suffix}
+                        value={metric.value}
+                        suffix={metric.suffix}
                         className="text-3xl md:text-4xl leading-none font-light text-gradient-sand-dark tracking-tight"
                       />
                     </div>
                   </div>
                   <div className="overflow-hidden flex-shrink-0">
                     <p className="stat-label text-[11px] md:text-xs font-medium text-midnight/45 uppercase tracking-wider leading-snug text-right max-w-[180px]">
-                      {paperlessMetric.label}
+                      {metric.label}
                     </p>
                   </div>
                 </div>
                 <div className="stat-line absolute bottom-0 left-0 right-0 h-px bg-dark-sand/15" />
               </div>
-            </div>
-          </div>
+            ))}
 
-          {/* ── Copper divider ── */}
-          <div className="w-16 h-px bg-dark-sand/30 mb-16" />
-
-          {/* ── Certifications ── */}
-          <div className="content-block mb-16">
-            <div className="flex items-center gap-3 mb-8">
-              <ShieldCheck className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-              <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
-                Certifications &amp; Standards
-              </h3>
-            </div>
-            <div className="cert-grid flex flex-wrap gap-3">
-              {certifications.map((cert, i) => (
-                <span
-                  key={i}
-                  className="cert-badge px-5 py-2.5 text-sm font-medium text-dark-sand/75 border border-dark-sand/12 rounded-sm bg-dark-sand/[0.03] whitespace-nowrap"
-                >
-                  {cert}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Copper divider ── */}
-          <div className="w-16 h-px bg-dark-sand/30 mb-16" />
-
-          {/* ── Awards ── */}
-          <div className="content-block">
-            <div className="flex items-center gap-3 mb-8">
-              <Award className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-              <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
-                Awards &amp; Recognition
-              </h3>
-            </div>
-            <div className="awards-list space-y-3">
-              {awards.map((award, i) => (
-                <div
-                  key={i}
-                  className="award-item flex items-start gap-4 py-4 border-b border-dark-sand/10 last:border-b-0"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-dark-sand/40 mt-2 flex-shrink-0" />
-                  <div>
-                    <p className="text-base font-medium text-midnight/80">{award.title}</p>
-                    <p className="text-sm font-light text-midnight/35 mt-0.5">{award.org}</p>
+            {/* Paperless metric — same row style */}
+            <div className="relative pb-4 pt-3 md:pb-5 md:pt-4">
+              <div className="flex items-end justify-between gap-4">
+                <div className="overflow-hidden">
+                  <div className="stat-number">
+                    <AnimatedCounter
+                      value={paperlessMetric.value}
+                      suffix={paperlessMetric.suffix}
+                      className="text-3xl md:text-4xl leading-none font-light text-gradient-sand-dark tracking-tight"
+                    />
                   </div>
                 </div>
-              ))}
+                <div className="overflow-hidden flex-shrink-0">
+                  <p className="stat-label text-[11px] md:text-xs font-medium text-midnight/45 uppercase tracking-wider leading-snug text-right max-w-[180px]">
+                    {paperlessMetric.label}
+                  </p>
+                </div>
+              </div>
+              <div className="stat-line absolute bottom-0 left-0 right-0 h-px bg-dark-sand/15" />
             </div>
           </div>
-
         </div>
+
+        {/* ── Copper divider ── */}
+        <div className="w-16 h-px bg-dark-sand/30 mb-20 mx-auto" />
+
+        {/* ── Certifications ── */}
+        <div className="content-block mb-20">
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <ShieldCheck className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
+            <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
+              Certifications &amp; Standards
+            </h3>
+          </div>
+          <div className="cert-grid flex flex-wrap justify-center gap-3">
+            {certifications.map((cert, i) => (
+              <span
+                key={i}
+                className="cert-badge px-5 py-2.5 text-sm font-medium text-dark-sand/75 border border-dark-sand/12 rounded-sm bg-dark-sand/[0.03] whitespace-nowrap"
+              >
+                {cert}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Copper divider ── */}
+        <div className="w-16 h-px bg-dark-sand/30 mb-20 mx-auto" />
+
+        {/* ── Awards ── */}
+        <div className="content-block max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <Award className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
+            <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
+              Awards &amp; Recognition
+            </h3>
+          </div>
+          <div className="awards-list space-y-3">
+            {awards.map((award, i) => (
+              <div
+                key={i}
+                className="award-item flex items-start gap-4 py-4 border-b border-dark-sand/10 last:border-b-0"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-dark-sand/40 mt-2 flex-shrink-0" />
+                <div>
+                  <p className="text-base font-medium text-midnight/80">{award.title}</p>
+                  <p className="text-sm font-light text-midnight/35 mt-0.5">{award.org}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
