@@ -206,13 +206,13 @@ export default function SustainabilitySection() {
 
           {/* ── Social Impact ── */}
           <div className="content-block mb-16">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center justify-center gap-3 mb-8">
               <Heart className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
               <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
                 Social Impact — Empowering Communities
               </h3>
             </div>
-            <p className="text-sm text-midnight/45 leading-relaxed mb-8 max-w-[450px]">
+            <p className="text-sm text-midnight/45 leading-relaxed mb-8 max-w-[450px] mx-auto text-center">
               Supporting productive families, youth empowerment, disability inclusion,
               and nonprofit partnerships across the Kingdom.
             </p>
