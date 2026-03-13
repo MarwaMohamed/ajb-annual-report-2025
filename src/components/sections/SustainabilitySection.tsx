@@ -137,14 +137,14 @@ export default function SustainabilitySection() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* ─── LEFT: Sticky image ─── */}
-        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
-          <div className="relative w-full h-[50vh] lg:h-full overflow-hidden">
+        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 overflow-hidden">
+          <div className="relative w-[150%] h-[50vh] lg:h-full -ml-[25%]">
             <Image
               src="/images/sustainability/sustainability-hero.png"
               alt="AJB sustainability visual"
               fill
-              className="object-contain object-left-bottom"
-              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover object-[65%_center]"
+              sizes="(max-width: 1024px) 100vw, 60vw"
               priority
             />
           </div>
