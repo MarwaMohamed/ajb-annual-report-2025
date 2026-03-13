@@ -87,6 +87,11 @@
     pointer-events: none;
   }
 
+  /* Scroll offset for fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem; /* matches nav h-16 md:h-20 */
+  }
+
   /* Selection */
   ::selection {
     background-color: rgba(185, 134, 102, 0.3);

@@ -411,18 +411,26 @@ export default function SustainabilitySection() {
           </div>
         </div>
 
-        {/* ─── Paperless metric ─── */}
-        <div className="flex justify-center mb-24">
-          <div className="inline-flex items-center gap-6 py-6 px-10 rounded-sm bg-[rgba(140,104,74,0.05)] border border-[rgba(140,104,74,0.12)]">
-            <AnimatedCounter
-              value={paperlessMetric.value}
-              suffix={paperlessMetric.suffix}
-              className="text-4xl text-gradient-sand-dark"
-            />
-            <div>
-              <p className="text-sm font-light text-midnight/60">{paperlessMetric.label}</p>
-              <p className="text-xs text-dark-sand/40 mt-1">Paperless transformation</p>
+        {/* ─── Paperless metric — same row style as social impact stats ─── */}
+        <div className="impact-stats max-w-[600px] md:max-w-none md:ml-auto md:w-[55%] mb-24">
+          <div className="relative pb-4 pt-3 md:pb-5 md:pt-4">
+            <div className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_180px] items-end gap-4">
+              <div className="overflow-hidden">
+                <div className="stat-number">
+                  <AnimatedCounter
+                    value={paperlessMetric.value}
+                    suffix={paperlessMetric.suffix}
+                    className="text-4xl md:text-[3.5rem] leading-none font-light text-gradient-sand-dark tracking-tight"
+                  />
+                </div>
+              </div>
+              <div className="overflow-hidden">
+                <p className="stat-label text-[11px] md:text-xs font-medium text-midnight/50 uppercase tracking-wider leading-snug text-right">
+                  {paperlessMetric.label}
+                </p>
+              </div>
             </div>
+            <div className="stat-line absolute bottom-0 left-0 right-0 h-px bg-dark-sand/20" />
           </div>
         </div>
 
@@ -430,17 +438,17 @@ export default function SustainabilitySection() {
 
         {/* ─── Certifications ─── */}
         <div className="mb-24">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <ShieldCheck className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-            <h3 className="text-lg font-bold text-midnight/80">
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <ShieldCheck className="w-7 h-7 text-dark-sand/50" strokeWidth={1.5} />
+            <h3 className="text-2xl md:text-3xl font-bold text-gradient-sand-dark">
               Certifications &amp; Standards
             </h3>
           </div>
-          <div className="cert-grid flex flex-wrap justify-center gap-3">
+          <div className="cert-grid flex flex-wrap justify-center gap-4">
             {certifications.map((cert, i) => (
               <span
                 key={i}
-                className="cert-badge px-4 py-2 text-xs font-medium text-dark-sand/80 border border-dark-sand/15 rounded-sm bg-dark-sand/[0.04] whitespace-nowrap"
+                className="cert-badge px-6 py-3 text-sm font-medium text-dark-sand/80 border border-dark-sand/15 rounded-sm bg-dark-sand/[0.04] whitespace-nowrap"
               >
                 {cert}
               </span>
@@ -450,9 +458,9 @@ export default function SustainabilitySection() {
 
         {/* ─── Awards ─── */}
         <div className="max-w-[800px] mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <Award className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-            <h3 className="text-lg font-bold text-midnight/80">
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <Award className="w-7 h-7 text-dark-sand/50" strokeWidth={1.5} />
+            <h3 className="text-2xl md:text-3xl font-bold text-gradient-sand-dark">
               Awards &amp; Recognition
             </h3>
           </div>
@@ -460,12 +468,12 @@ export default function SustainabilitySection() {
             {awards.map((award, i) => (
               <div
                 key={i}
-                className="award-item flex items-start gap-4 p-4 border-l-2 border-dark-sand/25 bg-midnight/[0.015] hover:bg-midnight/[0.03] transition-colors duration-300"
+                className="award-item flex items-start gap-4 p-5 border-l-2 border-dark-sand/25 bg-midnight/[0.015] hover:bg-midnight/[0.03] transition-colors duration-300"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-dark-sand mt-2 flex-shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-dark-sand mt-2.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-midnight">{award.title}</p>
-                  <p className="text-xs font-light text-midnight/40 mt-0.5">{award.org}</p>
+                  <p className="text-base font-medium text-midnight">{award.title}</p>
+                  <p className="text-sm font-light text-midnight/40 mt-1">{award.org}</p>
                 </div>
               </div>
             ))}
