@@ -291,32 +291,7 @@ export default function SustainabilitySection() {
           </div>
         </div>
 
-        {/* ── Copper divider ── */}
-        <div className="w-16 h-px bg-dark-sand/30 mb-20 mx-auto" />
-
-        {/* ── Awards ── */}
-        <div className="content-block max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-10">
-            <Award className="w-5 h-5 text-dark-sand/50" strokeWidth={1.5} />
-            <h3 className="text-sand-alt text-sm font-semibold uppercase tracking-[0.15em]">
-              Awards &amp; Recognition
-            </h3>
-          </div>
-          <div className="awards-list space-y-3">
-            {awards.map((award, i) => (
-              <div
-                key={i}
-                className="award-item flex items-start gap-4 py-4 border-b border-dark-sand/10 last:border-b-0"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-dark-sand/40 mt-2 flex-shrink-0" />
-                <div>
-                  <p className="text-base font-medium text-midnight/80">{award.title}</p>
-                  <p className="text-sm font-light text-midnight/35 mt-0.5">{award.org}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Awards & Recognition — hidden for now */}
 
       </div>
     </section>
