@@ -138,7 +138,7 @@ export default function SustainabilitySection() {
 
         {/* ─── LEFT: Sticky image ─── */}
         <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 overflow-hidden">
-          <div className="relative w-[150%] h-[50vh] lg:h-full -ml-[25%]">
+          <div className="relative w-[140%] h-[50vh] lg:h-full -ml-[20%]">
             <Image
               src="/images/sustainability/sustainability-hero.png"
               alt="AJB sustainability visual"
