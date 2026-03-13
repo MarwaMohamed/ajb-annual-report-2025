@@ -137,7 +137,7 @@ export default function SustainabilitySection() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* ─── LEFT: Sticky image ─── */}
-        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 bg-[#F0EBE4]">
+        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
           <div className="relative w-full h-[50vh] lg:h-full overflow-hidden">
             <Image
               src="/images/sustainability/sustainability-hero.png"
