@@ -136,40 +136,22 @@ export default function SustainabilitySection() {
       {/* ═══ Two-column layout: Image left | Content right ═══ */}
       <div className="flex flex-col lg:flex-row min-h-screen">
 
-        {/* ─── LEFT: Sticky image with organic curve edge ─── */}
-        <div className="relative lg:w-[42%] xl:w-[45%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 overflow-hidden">
-          {/* Image — oversized to bleed left, covers full height */}
-          <div className="relative w-[130%] h-[50vh] lg:h-full -ml-[15%]">
+        {/* ─── LEFT: Sticky image — uses the PNG's built-in curved mask ─── */}
+        <div className="relative lg:w-[48%] xl:w-[50%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
+          <div className="relative h-[50vh] lg:h-full">
             <Image
               src="/images/sustainability/sustainability-hero.png"
               alt="AJB sustainability visual"
               fill
-              className="object-cover object-[60%_center]"
-              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-contain object-left"
+              sizes="(max-width: 1024px) 100vw, 55vw"
               priority
             />
           </div>
-
-          {/* Organic S-curve overlay on right edge */}
-          <svg
-            className="absolute top-0 right-0 h-full w-[120px] md:w-[160px] lg:w-[200px] hidden lg:block"
-            viewBox="0 0 200 1000"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M200 0 L200 1000 L80 1000 C80 1000, 200 750, 60 500 C-80 250, 80 0, 80 0 Z"
-              fill="#FAF8F5"
-            />
-          </svg>
-
-          {/* Mobile: simple gradient fade on right edge */}
-          <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-[#FAF8F5] to-transparent lg:hidden" />
         </div>
 
         {/* ─── RIGHT: Scrollable content ─── */}
-        <div className="lg:w-[58%] xl:w-[55%] py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20">
+        <div className="lg:w-[52%] xl:w-[50%] py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20">
 
           {/* ── Section header ── */}
           <div className="content-block mb-16">
