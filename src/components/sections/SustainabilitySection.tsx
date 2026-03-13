@@ -136,14 +136,25 @@ export default function SustainabilitySection() {
       {/* ═══ Two-column layout: Image left | Content right ═══ */}
       <div className="flex flex-col lg:flex-row min-h-screen">
 
-        {/* ─── LEFT: Sticky image — uses the PNG's built-in curved mask ─── */}
+        {/* ─── LEFT: Sticky image with organic curved edge ─── */}
         <div className="relative lg:w-[48%] xl:w-[50%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
-          <div className="relative h-[50vh] lg:h-full">
+          {/* Hidden SVG clipPath — single smooth S-curve on right edge */}
+          <svg className="absolute w-0 h-0" aria-hidden="true">
+            <defs>
+              <clipPath id="organic-curve" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0 L 0.82,0 C 0.90,0.12 0.90,0.28 0.84,0.42 C 0.78,0.56 0.78,0.72 0.84,0.86 C 0.88,0.94 0.86,1.0 0.86,1.0 L 0,1 Z" />
+              </clipPath>
+            </defs>
+          </svg>
+          <div
+            className="relative h-[50vh] lg:h-full w-[110%] -ml-[5%]"
+            style={{ clipPath: 'url(#organic-curve)' }}
+          >
             <Image
               src="/images/sustainability/sustainability-hero.png"
               alt="AJB sustainability visual"
               fill
-              className="object-contain object-left"
+              className="object-cover object-[60%_center]"
               sizes="(max-width: 1024px) 100vw, 55vw"
               priority
             />
