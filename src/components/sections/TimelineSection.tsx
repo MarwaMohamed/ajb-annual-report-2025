@@ -139,8 +139,11 @@ export default function TimelineSection() {
                 <div className={`w-[45%] min-w-0 relative flex flex-col ${!isRight ? "items-end" : ""}`}>
                   {!isRight ? (
                     /* LEFT CARD — text right-aligned */
-                    <div className="tl-card bg-white/90 backdrop-blur-sm w-[75%] min-w-0 sticky flex flex-wrap gap-5 p-5 border border-midnight/[0.08] hover:border-sand/30 hover:shadow-lg hover:shadow-sand/[0.06] transition-all duration-500 top-[280px]">
-                      <div className="w-full min-w-0 relative flex flex-col">
+                    <div
+                      className="tl-card relative w-[75%] min-w-0 sticky flex flex-wrap gap-5 p-[1.5px] rounded-xl top-[280px] transition-all duration-500 hover:shadow-lg hover:shadow-sand/[0.08]"
+                      style={{ background: "linear-gradient(135deg, #8c684a 0%, #b27f59 40%, #c99a74 70%, rgba(140,104,74,0.25) 100%)" }}
+                    >
+                      <div className="w-full rounded-[10px] bg-[#F0EBE4] p-5">
                         <div className="w-full flex flex-col items-end">
                           <span className="text-2xl md:text-[28px] font-black text-gradient-sand-dark leading-none tracking-[0.01em]">
                             {milestone.year}
@@ -182,8 +185,11 @@ export default function TimelineSection() {
                 <div className={`w-[45%] min-w-0 relative flex flex-col ${isRight ? "" : ""}`}>
                   {isRight ? (
                     /* RIGHT CARD — text left-aligned */
-                    <div className="tl-card bg-white/90 backdrop-blur-sm w-[75%] min-w-0 sticky flex flex-wrap gap-5 p-5 border border-midnight/[0.08] hover:border-sand/30 hover:shadow-lg hover:shadow-sand/[0.06] transition-all duration-500 top-[280px]">
-                      <div className="w-full min-w-0 relative flex flex-col">
+                    <div
+                      className="tl-card relative w-[75%] min-w-0 sticky flex flex-wrap gap-5 p-[1.5px] rounded-xl top-[280px] transition-all duration-500 hover:shadow-lg hover:shadow-sand/[0.08]"
+                      style={{ background: "linear-gradient(135deg, #8c684a 0%, #b27f59 40%, #c99a74 70%, rgba(140,104,74,0.25) 100%)" }}
+                    >
+                      <div className="w-full rounded-[10px] bg-[#F0EBE4] p-5">
                         <div className="w-full flex flex-col items-start">
                           <span className="text-2xl md:text-[28px] font-black text-gradient-sand-dark leading-none tracking-[0.01em]">
                             {milestone.year}
