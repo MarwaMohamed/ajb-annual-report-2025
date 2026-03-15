@@ -11,7 +11,7 @@ interface Rotating3DPlaceholderProps {
 }
 
 /**
- * 3D rotating AJB shape image linked to scroll progress.
+ * AJB logo with scroll-linked animation in brand sand/brown color.
  */
 export default function Rotating3DPlaceholder({
   scrollProgress = 0,
@@ -19,15 +19,16 @@ export default function Rotating3DPlaceholder({
 }: Rotating3DPlaceholderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Apply scroll-linked rotation
+  // Apply scroll-linked subtle animation
   useEffect(() => {
     if (!containerRef.current) return;
-    const shape = containerRef.current.querySelector(".shape-inner");
-    if (!shape) return;
+    const logo = containerRef.current.querySelector(".logo-inner");
+    if (!logo) return;
 
-    gsap.set(shape, {
-      rotateY: scrollProgress * 360,
-      rotateX: 15 + scrollProgress * 20,
+    gsap.set(logo, {
+      rotateY: scrollProgress * 15 - 7.5,
+      rotateX: scrollProgress * 5,
+      scale: 1 + scrollProgress * 0.05,
     });
   }, [scrollProgress]);
 
@@ -35,40 +36,44 @@ export default function Rotating3DPlaceholder({
     <div
       ref={containerRef}
       className={`relative flex items-center justify-center ${className}`}
-      style={{ perspective: "800px" }}
+      style={{ perspective: "1000px" }}
     >
-      {/* Ambient glow behind the shape */}
+      {/* Ambient glow behind the logo */}
       <div
-        className="absolute w-96 h-[28rem] rounded-full opacity-30 blur-3xl"
+        className="absolute w-72 h-72 rounded-full opacity-20 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle, rgba(0,20,33,0.4) 0%, rgba(0,20,33,0.15) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(140,104,74,0.4) 0%, rgba(178,127,89,0.15) 40%, transparent 70%)",
         }}
       />
 
-      {/* 3D rotating image */}
+      {/* Logo with scroll animation */}
       <div
-        className="shape-inner relative w-96 h-[28rem]"
+        className="logo-inner relative w-64 h-32"
         style={{
           transformStyle: "preserve-3d",
-          transform: `rotateY(${scrollProgress * 360}deg) rotateX(${15 + scrollProgress * 20}deg)`,
-          transition: "transform 0.1s linear",
+          transform: `rotateY(${scrollProgress * 15 - 7.5}deg) rotateX(${scrollProgress * 5}deg) scale(${1 + scrollProgress * 0.05})`,
+          transition: "transform 0.15s ease-out",
         }}
       >
         <Image
-          src="/images/shapes/ajb-3d-shape-clean.png"
-          alt="AJB 3D logo shape"
+          src="/images/logo/ajb-white.png"
+          alt="Aljazira Bank logo"
           fill
-          className="object-contain drop-shadow-2xl"
-          sizes="384px"
+          className="object-contain drop-shadow-lg"
+          sizes="256px"
+          style={{
+            filter:
+              "brightness(0) saturate(100%) invert(43%) sepia(20%) saturate(800%) hue-rotate(350deg) brightness(90%) contrast(90%)",
+          }}
         />
       </div>
 
-      {/* Orbiting ring */}
+      {/* Subtle orbiting ring */}
       <div
-        className="absolute w-[26rem] h-[26rem] rounded-full border border-dark-sand/10"
+        className="absolute w-80 h-80 rounded-full border border-dark-sand/8"
         style={{
-          transform: `rotateX(70deg) rotateZ(${scrollProgress * 180}deg)`,
+          transform: `rotateX(75deg) rotateZ(${scrollProgress * 120}deg)`,
           transformStyle: "preserve-3d",
         }}
       />
