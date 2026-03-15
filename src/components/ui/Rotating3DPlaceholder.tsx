@@ -39,7 +39,7 @@ export default function Rotating3DPlaceholder({
     >
       {/* Ambient glow behind the shape */}
       <div
-        className="absolute w-72 h-72 rounded-full opacity-30 blur-3xl"
+        className="absolute w-96 h-[28rem] rounded-full opacity-30 blur-3xl"
         style={{
           background:
             "radial-gradient(circle, rgba(0,20,33,0.4) 0%, rgba(0,20,33,0.15) 40%, transparent 70%)",
@@ -48,7 +48,7 @@ export default function Rotating3DPlaceholder({
 
       {/* 3D rotating image */}
       <div
-        className="shape-inner relative w-72 h-72"
+        className="shape-inner relative w-96 h-[28rem]"
         style={{
           transformStyle: "preserve-3d",
           transform: `rotateY(${scrollProgress * 360}deg) rotateX(${15 + scrollProgress * 20}deg)`,
@@ -56,17 +56,17 @@ export default function Rotating3DPlaceholder({
         }}
       >
         <Image
-          src="/images/shapes/ajb-3d-shape.svg"
+          src="/images/shapes/ajb-3d-shape-clean.png"
           alt="AJB 3D logo shape"
           fill
           className="object-contain drop-shadow-2xl"
-          sizes="288px"
+          sizes="384px"
         />
       </div>
 
       {/* Orbiting ring */}
       <div
-        className="absolute w-80 h-80 rounded-full border border-dark-sand/10"
+        className="absolute w-[26rem] h-[26rem] rounded-full border border-dark-sand/10"
         style={{
           transform: `rotateX(70deg) rotateZ(${scrollProgress * 180}deg)`,
           transformStyle: "preserve-3d",
