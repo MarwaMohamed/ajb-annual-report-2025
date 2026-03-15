@@ -43,7 +43,7 @@ export default function SectionIndicator() {
           aria-label={section.label}
         >
           {/* Label tooltip */}
-          <span className="absolute right-6 text-xs font-medium text-white/0 group-hover:text-white/70 transition-all duration-300 whitespace-nowrap pr-2">
+          <span className="absolute right-6 text-xs font-medium text-midnight/0 group-hover:text-midnight/60 transition-all duration-300 whitespace-nowrap pr-2">
             {section.label}
           </span>
           {/* Dot */}
@@ -51,7 +51,7 @@ export default function SectionIndicator() {
             className={`block rounded-full transition-all duration-500 ${
               i === activeIndex
                 ? "w-2.5 h-2.5 bg-sand shadow-[0_0_12px_rgba(185,134,102,0.5)]"
-                : "w-1.5 h-1.5 bg-white/20 group-hover:bg-white/40"
+                : "w-1.5 h-1.5 bg-dark-sand/30 group-hover:bg-dark-sand/50"
             }`}
           />
         </button>
