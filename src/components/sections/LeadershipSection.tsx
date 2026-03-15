@@ -6,6 +6,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import CopperLine from "@/components/ui/CopperLine";
 import { chairmanData, ceoData } from "@/data/leadership";
+import { BASE_PATH } from "@/lib/constants";
 
 interface LeaderMessageProps {
   data: typeof chairmanData | typeof ceoData;
@@ -108,7 +109,7 @@ function LeaderMessage({ data, id, reverse = false, inlineMetrics, light = false
               style={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
             >
               <Image
-                src={data.image}
+                src={`${BASE_PATH}${data.image}`}
                 alt={data.name}
                 fill
                 className="object-cover object-top"
