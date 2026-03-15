@@ -27,16 +27,19 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Track active section
-    sections.forEach((section) => {
-      ScrollTrigger.create({
-        trigger: `#${section.id}`,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => setActiveSection(section.id),
-        onEnterBack: () => setActiveSection(section.id),
+    // Track active section — delay to let pinned sections register first
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+      sections.forEach((section) => {
+        ScrollTrigger.create({
+          trigger: `#${section.id}`,
+          start: "top 40%",
+          end: "bottom 40%",
+          onEnter: () => setActiveSection(section.id),
+          onEnterBack: () => setActiveSection(section.id),
+        });
       });
-    });
+    }, 1000);
 
     // Initial fade in
     if (navRef.current) {
@@ -49,6 +52,7 @@ export default function Navigation() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
     };
   }, []);
 
