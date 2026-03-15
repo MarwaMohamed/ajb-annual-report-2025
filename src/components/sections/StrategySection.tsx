@@ -79,31 +79,35 @@ export default function StrategySection() {
   }, []);
 
   return (
-    <section id="strategy" ref={sectionRef} className="relative overflow-hidden">
-      {/* Key visual shape — decorative background */}
-      <div className="absolute top-[5%] right-[-3%] w-[30%] opacity-[0.25] pointer-events-none hidden lg:block mix-blend-lighten">
-        <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
-      </div>
-
+    <section id="strategy" ref={sectionRef} className="relative overflow-hidden bg-midnight">
       {/* Desktop: horizontal scroll track */}
       <div
         ref={trackRef}
         className="lg:flex lg:flex-nowrap lg:h-screen"
       >
         {/* Intro panel */}
-        <div className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0">
-          <div className="section-container">
+        <div className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0 relative">
+          {/* Light left / dark right split */}
+          <div className="absolute inset-0 flex pointer-events-none">
+            <div className="w-[62%] bg-[#FAF8F5]" />
+            <div className="w-[38%] bg-midnight relative overflow-hidden">
+              <div className="absolute top-[5%] right-[-8%] w-[80%] opacity-[0.25] mix-blend-lighten">
+                <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
+              </div>
+            </div>
+          </div>
+          <div className="section-container relative z-10">
             <div className="max-w-[700px]">
               <div className="panel-content">
                 <CopperLine length="60px" thickness={2} />
               </div>
-              <p className="panel-content text-sand/80 text-sm font-medium uppercase tracking-[0.2em] mb-3 mt-6">
+              <p className="panel-content text-dark-sand text-sm font-medium uppercase tracking-[0.2em] mb-3 mt-6">
                 Strategy
               </p>
-              <h2 className="panel-content text-display-1 font-bold text-white mb-6">
+              <h2 className="panel-content text-display-1 font-bold text-midnight mb-6">
                 The &ldquo;One Bank&rdquo; Approach
               </h2>
-              <p className="panel-content text-lg font-light text-white/60 leading-relaxed mb-12">
+              <p className="panel-content text-lg font-light text-midnight/55 leading-relaxed mb-12">
                 Integrated execution across all bank sectors, balancing expansion
                 with efficient capital deployment. Digital channels serve as the
                 primary driver for growth and acquisition.
@@ -114,10 +118,10 @@ export default function StrategySection() {
                 {businessModelComponents.map((comp, i) => (
                   <div
                     key={i}
-                    className="p-4 border border-white/[0.06] rounded-sm bg-white/[0.02]"
+                    className="p-4 border border-dark-sand/15 rounded-sm bg-dark-sand/[0.03]"
                   >
-                    <h4 className="text-sm font-bold text-white mb-1">{comp.title}</h4>
-                    <p className="text-xs font-light text-white/40">{comp.description}</p>
+                    <h4 className="text-sm font-bold text-midnight mb-1">{comp.title}</h4>
+                    <p className="text-xs font-light text-midnight/40">{comp.description}</p>
                   </div>
                 ))}
               </div>
@@ -129,17 +133,23 @@ export default function StrategySection() {
         {strategySectors.map((sector, i) => (
           <div
             key={sector.id}
-            className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0"
-            style={{
-              background: `radial-gradient(ellipse at ${50 + i * 10}% 50%, rgba(185,134,102,0.03) 0%, transparent 60%)`,
-            }}
+            className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0 relative"
           >
-            <div className="section-container">
+            {/* Light left / dark right split */}
+            <div className="absolute inset-0 flex pointer-events-none">
+              <div className="w-[62%] bg-[#FAF8F5]" />
+              <div className="w-[38%] bg-midnight relative overflow-hidden">
+                <div className="absolute top-[5%] right-[-8%] w-[80%] opacity-[0.15] mix-blend-lighten">
+                  <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
+                </div>
+              </div>
+            </div>
+            <div className="section-container relative z-10">
               <div className="max-w-[600px]">
-                <span className="panel-content text-sand/30 text-6xl md:text-8xl font-black leading-none block mb-4">
+                <span className="panel-content text-dark-sand/25 text-6xl md:text-8xl font-black leading-none block mb-4">
                   0{i + 1}
                 </span>
-                <h3 className="panel-content text-display-2 font-bold text-white mb-4">
+                <h3 className="panel-content text-display-2 font-bold text-midnight mb-4">
                   {sector.title}
                 </h3>
 
@@ -152,22 +162,22 @@ export default function StrategySection() {
                       suffix={sector.metric.suffix}
                       decimals={"decimals" in sector.metric ? (sector.metric.decimals as number) : 0}
                       displayText={sector.displayText}
-                      className="text-counter-hero text-gradient-sand"
+                      className="text-counter-hero text-gradient-sand-dark"
                       label={sector.metric.label}
                     />
                   ) : (
                     <div className="flex flex-col">
-                      <span className="text-counter-hero text-gradient-sand font-black">
+                      <span className="text-counter-hero text-gradient-sand-dark font-black">
                         {sector.displayText || "—"}
                       </span>
-                      <span className="mt-2 text-sm font-light text-white/60 uppercase tracking-wider">
+                      <span className="mt-2 text-sm font-light text-midnight/50 uppercase tracking-wider">
                         {sector.metric.label}
                       </span>
                     </div>
                   )}
                 </div>
 
-                <p className="panel-content text-base font-light text-white/60 leading-relaxed">
+                <p className="panel-content text-base font-light text-midnight/55 leading-relaxed">
                   {sector.description}
                 </p>
 
