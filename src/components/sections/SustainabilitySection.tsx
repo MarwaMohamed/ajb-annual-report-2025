@@ -8,14 +8,11 @@ import {
   Leaf,
   Heart,
   ShieldCheck,
-  Award,
-  FileText,
 } from "lucide-react";
 import {
   greenFinancing,
   socialImpact,
   certifications,
-  awards,
   paperlessMetric,
 } from "@/data/sustainability";
 
