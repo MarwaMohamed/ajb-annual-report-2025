@@ -358,25 +358,28 @@ export default function KeyFactsSection() {
                   Scroll to explore
                 </p>
                 <div className="mt-4 flex items-center gap-3 justify-center">
-                  <div className="w-12 h-[2px] bg-dark-sand/40" />
+                  <div className="w-12 h-[2px] rounded-full" style={{ backgroundColor: `rgb(${140 - scrollProgress * 140}, ${104 - scrollProgress * 84}, ${74 - scrollProgress * 41})`, opacity: 0.4 + scrollProgress * 0.4, transition: "background-color 0.15s ease-out" }} />
                   <div
-                    className="w-2.5 h-2.5 rounded-full bg-dark-sand/70"
+                    className="w-2.5 h-2.5 rounded-full"
                     style={{
+                      backgroundColor: `rgb(${140 - scrollProgress * 140}, ${104 - scrollProgress * 84}, ${74 - scrollProgress * 41})`,
                       transform: `scale(${1 + scrollProgress * 0.6})`,
                       opacity: 0.7 + scrollProgress * 0.3,
+                      transition: "background-color 0.15s ease-out",
                     }}
                   />
-                  <div className="w-12 h-[2px] bg-dark-sand/40" />
+                  <div className="w-12 h-[2px] rounded-full" style={{ backgroundColor: `rgb(${140 - scrollProgress * 140}, ${104 - scrollProgress * 84}, ${74 - scrollProgress * 41})`, opacity: 0.4 + scrollProgress * 0.4, transition: "background-color 0.15s ease-out" }} />
                 </div>
               </div>
 
               {/* Vertical progress line */}
               <div className="mx-auto mt-6 w-[3px] h-[30vh] bg-midnight/[0.15] rounded-full">
                 <div
-                  className="w-full bg-gradient-to-b from-dark-sand to-dark-sand/40 rounded-full"
+                  className="w-full rounded-full"
                   style={{
                     height: `${scrollProgress * 100}%`,
-                    transition: "height 0.15s linear",
+                    background: `linear-gradient(to bottom, rgb(${140 - scrollProgress * 140}, ${104 - scrollProgress * 84}, ${74 - scrollProgress * 41}), rgb(${140 - scrollProgress * 140}, ${104 - scrollProgress * 84}, ${74 - scrollProgress * 41}, 0.4))`,
+                    transition: "height 0.15s linear, background 0.15s ease-out",
                   }}
                 />
               </div>
