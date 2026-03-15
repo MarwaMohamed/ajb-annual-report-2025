@@ -15,6 +15,7 @@ import {
   certifications,
   paperlessMetric,
 } from "@/data/sustainability";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function SustainabilitySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -149,7 +150,7 @@ export default function SustainabilitySection() {
           >
             <div className="absolute inset-0 right-[40%] flex items-center justify-end">
               <Image
-                src="/images/sustainability/woman-portrait.jpg"
+                src={`${BASE_PATH}/images/sustainability/woman-portrait.jpg`}
                 alt="AJB sustainability visual"
                 width={500}
                 height={750}

@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -118,7 +119,7 @@ export default function HeroSection() {
       {/* Desert background */}
       <div ref={bgRef} className="absolute inset-0 z-0">
         <Image
-          src="/images/hero/herobg.png"
+          src={`${BASE_PATH}/images/hero/herobg.png`}
           alt=""
           fill
           className="object-cover object-center"
@@ -136,7 +137,7 @@ export default function HeroSection() {
         className="absolute top-[20%] right-[15%] w-[25%] z-[5] opacity-0 hidden lg:block mix-blend-lighten"
       >
         <Image
-          src="/images/shapes/kv-cmyk-2.png"
+          src={`${BASE_PATH}/images/shapes/kv-cmyk-2.png`}
           alt=""
           width={800}
           height={1142}
@@ -150,7 +151,7 @@ export default function HeroSection() {
         className="absolute bottom-[5%] right-[8%] w-[18%] z-[5] opacity-0 hidden lg:block mix-blend-lighten"
       >
         <Image
-          src="/images/shapes/kv-cmyk-3.png"
+          src={`${BASE_PATH}/images/shapes/kv-cmyk-3.png`}
           alt=""
           width={800}
           height={1142}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import CopperLine from "@/components/ui/CopperLine";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { BASE_PATH } from "@/lib/constants";
 
 const identityStats = [
   { value: 72, suffix: "", label: "Media Platforms" },
@@ -87,7 +88,7 @@ export default function IdentitySection() {
     >
       {/* Subtle decorative shape */}
       <div className="absolute top-[15%] right-[-5%] w-[30%] opacity-[0.03] pointer-events-none">
-        <Image src="/images/decoratives/Vectorbg.png" alt="" width={600} height={600} className="w-full" />
+        <Image src={`${BASE_PATH}/images/decoratives/Vectorbg.png`} alt="" width={600} height={600} className="w-full" />
       </div>
 
       <div className="section-container">
@@ -110,7 +111,7 @@ export default function IdentitySection() {
         <div className="flex justify-center mb-20">
           <div className="relative w-[200px] h-[80px]">
             <Image
-              src="/images/logo/ajb-white.png"
+              src={`${BASE_PATH}/images/logo/ajb-white.png`}
               alt="ajb logo"
               fill
               className="object-contain brightness-0 opacity-80"

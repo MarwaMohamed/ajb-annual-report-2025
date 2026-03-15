@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import CopperLine from "@/components/ui/CopperLine";
 import { Download } from "lucide-react";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function ClosingSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,7 +66,7 @@ export default function ClosingSection() {
       {/* Subtle desert landscape overlay — very faint on light bg */}
       <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none">
         <Image
-          src="/images/hero/Mask group.png"
+          src={`${BASE_PATH}/images/hero/Mask group.png`}
           alt=""
           fill
           className="object-cover object-center"
@@ -74,11 +75,11 @@ export default function ClosingSection() {
 
       {/* Key visual outline shape — left, faint on light bg */}
       <div className="absolute top-[5%] left-[3%] w-[28%] opacity-[0.06] pointer-events-none hidden md:block invert">
-        <Image src="/images/shapes/kv-flat-2.png" alt="" width={800} height={1142} className="w-full h-auto" />
+        <Image src={`${BASE_PATH}/images/shapes/kv-flat-2.png`} alt="" width={800} height={1142} className="w-full h-auto" />
       </div>
       {/* Key visual outline shape — right, bottom */}
       <div className="absolute bottom-[10%] right-[5%] w-[22%] opacity-[0.05] pointer-events-none hidden md:block invert rotate-180">
-        <Image src="/images/shapes/kv-flat-1.png" alt="" width={800} height={1142} className="w-full h-auto" />
+        <Image src={`${BASE_PATH}/images/shapes/kv-flat-1.png`} alt="" width={800} height={1142} className="w-full h-auto" />
       </div>
 
       {/* Content */}
@@ -86,7 +87,7 @@ export default function ClosingSection() {
         {/* Logo — dark version on light bg */}
         <div className="closing-animate mb-8">
           <Image
-            src="/images/logo/ajb-white.png"
+            src={`${BASE_PATH}/images/logo/ajb-white.png`}
             alt="Aljazira Bank"
             width={180}
             height={48}

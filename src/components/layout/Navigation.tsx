@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { sections } from "@/data/sections";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +73,7 @@ export default function Navigation() {
           {/* Logo */}
           <button onClick={() => scrollTo("hero")} className="relative z-10">
             <Image
-              src="/images/logo/ajb-white.png"
+              src={`${BASE_PATH}/images/logo/ajb-white.png`}
               alt="Aljazira Bank"
               width={120}
               height={32}

@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { BASE_PATH } from "@/lib/constants";
 
 interface Rotating3DPlaceholderProps {
   scrollProgress?: number;
@@ -57,7 +58,7 @@ export default function Rotating3DPlaceholder({
         }}
       >
         <Image
-          src="/images/logo/ajb-symbol.svg"
+          src={`${BASE_PATH}/images/logo/ajb-symbol.svg`}
           alt="Aljazira Bank logo"
           fill
           className="object-contain drop-shadow-lg"

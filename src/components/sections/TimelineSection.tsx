@@ -6,6 +6,7 @@ import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import CopperLine from "@/components/ui/CopperLine";
 import { milestones } from "@/data/timeline";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function TimelineSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -105,10 +106,10 @@ export default function TimelineSection() {
     >
       {/* Decorative shapes — very faint */}
       <div className="absolute top-[8%] left-[2%] w-[20%] opacity-[0.03] pointer-events-none hidden lg:block invert">
-        <Image src="/images/shapes/kv-flat-2.png" alt="" width={800} height={1142} className="w-full h-auto" />
+        <Image src={`${BASE_PATH}/images/shapes/kv-flat-2.png`} alt="" width={800} height={1142} className="w-full h-auto" />
       </div>
       <div className="absolute bottom-[12%] right-[3%] w-[16%] opacity-[0.03] pointer-events-none hidden lg:block invert rotate-180">
-        <Image src="/images/shapes/kv-flat-1.png" alt="" width={800} height={1142} className="w-full h-auto" />
+        <Image src={`${BASE_PATH}/images/shapes/kv-flat-1.png`} alt="" width={800} height={1142} className="w-full h-auto" />
       </div>
 
       <div className="section-container">

@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 import GlassCard from "@/components/ui/GlassCard";
 import CopperLine from "@/components/ui/CopperLine";
 import { strategicPillars } from "@/data/strategy";
+import { BASE_PATH } from "@/lib/constants";
 
 export default function ThemeSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ export default function ThemeSection() {
       {/* Key visual shape — outline, right side decorative */}
       <div className="absolute top-[5%] right-[-8%] w-[35%] opacity-[0.12] pointer-events-none hidden md:block mix-blend-lighten">
         <Image
-          src="/images/shapes/kv-flat-1.png"
+          src={`${BASE_PATH}/images/shapes/kv-flat-1.png`}
           alt=""
           width={800}
           height={1142}
@@ -62,7 +63,7 @@ export default function ThemeSection() {
       {/* Second outline shape — left side, lower */}
       <div className="absolute bottom-[10%] left-[-5%] w-[22%] opacity-[0.06] pointer-events-none hidden lg:block mix-blend-lighten rotate-180">
         <Image
-          src="/images/shapes/kv-flat-3.png"
+          src={`${BASE_PATH}/images/shapes/kv-flat-3.png`}
           alt=""
           width={800}
           height={1142}
