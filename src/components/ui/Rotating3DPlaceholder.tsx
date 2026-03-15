@@ -57,7 +57,7 @@ export default function Rotating3DPlaceholder({
         }}
       >
         <Image
-          src="/images/logo/ajb-symbol-white.png"
+          src="/images/logo/ajb-symbol.svg"
           alt="Aljazira Bank logo"
           fill
           className="object-contain drop-shadow-lg"
