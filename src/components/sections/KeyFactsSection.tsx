@@ -5,6 +5,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import DonutChart from "@/components/ui/DonutChart";
 import Rotating3DPlaceholder from "@/components/ui/Rotating3DPlaceholder";
+import Image from "next/image";
 import {
   heroMetrics,
   financialGrid,
