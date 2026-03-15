@@ -123,7 +123,7 @@ export default function IdentitySection() {
           {identityStats.map((stat, i) => (
             <div
               key={i}
-              className="identity-stat text-center py-8 px-4 rounded-sm bg-midnight/[0.03] border border-midnight/[0.06] hover:bg-midnight/[0.05] hover:border-sand/20 transition-all duration-300"
+              className="identity-stat text-center py-8 px-4 rounded-sm bg-transparent border border-dark-sand/20 hover:border-dark-sand/40 transition-all duration-300"
             >
               <AnimatedCounter
                 value={stat.value}
