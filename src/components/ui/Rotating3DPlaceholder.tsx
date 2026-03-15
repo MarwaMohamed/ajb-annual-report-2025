@@ -49,7 +49,7 @@ export default function Rotating3DPlaceholder({
 
       {/* Logo with scroll animation */}
       <div
-        className="logo-inner relative w-64 h-32"
+        className="logo-inner relative w-40 h-24"
         style={{
           transformStyle: "preserve-3d",
           transform: `rotateY(${scrollProgress * 15 - 7.5}deg) rotateX(${scrollProgress * 5}deg) scale(${1 + scrollProgress * 0.05})`,
@@ -57,14 +57,15 @@ export default function Rotating3DPlaceholder({
         }}
       >
         <Image
-          src="/images/logo/ajb-white.png"
+          src="/images/logo/ajb-symbol-white.png"
           alt="Aljazira Bank logo"
           fill
           className="object-contain drop-shadow-lg"
-          sizes="256px"
+          sizes="160px"
           style={{
             filter:
-              "brightness(0) saturate(100%) invert(43%) sepia(20%) saturate(800%) hue-rotate(350deg) brightness(90%) contrast(90%)",
+              `brightness(0) saturate(100%) invert(${43 - scrollProgress * 38}%) sepia(${20 - scrollProgress * 20}%) saturate(${800 - scrollProgress * 700}%) hue-rotate(350deg) brightness(${90 - scrollProgress * 80}%) contrast(${90 + scrollProgress * 10}%)`,
+            transition: "filter 0.15s ease-out",
           }}
         />
       </div>
