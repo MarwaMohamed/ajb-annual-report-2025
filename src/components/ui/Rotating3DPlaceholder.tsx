@@ -56,7 +56,7 @@ export default function Rotating3DPlaceholder({
         }}
       >
         <Image
-          src="/images/shapes/ajb-3d-shape.png"
+          src="/images/shapes/ajb-3d-shape.svg"
           alt="AJB 3D logo shape"
           fill
           className="object-contain drop-shadow-2xl"
