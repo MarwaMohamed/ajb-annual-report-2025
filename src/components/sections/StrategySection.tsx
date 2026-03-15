@@ -10,68 +10,31 @@ import { strategySectors, businessModelComponents } from "@/data/strategy";
 
 export default function StrategySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current || !trackRef.current) return;
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Only enable horizontal scroll on desktop
-      ScrollTrigger.matchMedia({
-        "(min-width: 1024px)": () => {
-          const track = trackRef.current!;
-          const panels = track.querySelectorAll(".strategy-panel");
-          const totalWidth = track.scrollWidth - window.innerWidth;
+      // Animate each panel's content on scroll
+      const panels = sectionRef.current!.querySelectorAll(".strategy-panel");
+      panels.forEach((panel) => {
+        const content = panel.querySelectorAll(".panel-content");
+        gsap.set(content, { opacity: 0, y: 30 });
 
-          // Horizontal scroll
-          gsap.to(track, {
-            x: -totalWidth,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-              end: `+=${totalWidth}`,
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1,
-            },
-          });
-
-          // Progress bar
-          if (progressRef.current) {
-            gsap.to(progressRef.current, {
-              scaleX: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top top",
-                end: `+=${totalWidth}`,
-                scrub: 1,
-              },
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "top 75%",
+          once: true,
+          onEnter: () => {
+            gsap.to(content, {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.1,
+              ease: "power3.out",
             });
-          }
-
-          // Each panel's content animates in
-          panels.forEach((panel) => {
-            const content = panel.querySelectorAll(".panel-content");
-            gsap.set(content, { opacity: 0, y: 30 });
-
-            ScrollTrigger.create({
-              trigger: panel,
-              start: "left center",
-              onEnter: () => {
-                gsap.to(content, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.7,
-                  stagger: 0.1,
-                  ease: "power3.out",
-                });
-              },
-            });
-          });
-        },
+          },
+        });
       });
     }, sectionRef);
 
@@ -79,25 +42,15 @@ export default function StrategySection() {
   }, []);
 
   return (
-    <section id="strategy" ref={sectionRef} className="relative overflow-hidden bg-midnight">
-      {/* Desktop: horizontal scroll track */}
-      <div
-        ref={trackRef}
-        className="lg:flex lg:flex-nowrap lg:h-screen"
-      >
-        {/* Intro panel */}
-        <div className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0 relative">
-          {/* Light left / dark right split */}
-          <div className="absolute inset-0 flex pointer-events-none">
-            <div className="w-[62%] bg-[#FAF8F5]" />
-            <div className="w-[38%] bg-midnight relative overflow-hidden">
-              <div className="absolute top-[5%] right-[-8%] w-[80%] opacity-[0.25] mix-blend-lighten">
-                <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
-              </div>
-            </div>
-          </div>
-          <div className="section-container relative z-10">
-            <div className="max-w-[700px]">
+    <section id="strategy" ref={sectionRef} className="relative overflow-hidden">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+
+        {/* ─── LEFT: Scrollable text content (light bg) ─── */}
+        <div className="lg:w-[62%] bg-[#FAF8F5]">
+
+          {/* Intro panel */}
+          <div className="strategy-panel min-h-screen flex items-center py-20 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20">
+            <div className="max-w-[600px]">
               <div className="panel-content">
                 <CopperLine length="60px" thickness={2} />
               </div>
@@ -127,24 +80,13 @@ export default function StrategySection() {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Sector panels */}
-        {strategySectors.map((sector, i) => (
-          <div
-            key={sector.id}
-            className="strategy-panel flex-shrink-0 w-full lg:w-screen h-auto lg:h-screen flex items-center py-20 lg:py-0 relative"
-          >
-            {/* Light left / dark right split */}
-            <div className="absolute inset-0 flex pointer-events-none">
-              <div className="w-[62%] bg-[#FAF8F5]" />
-              <div className="w-[38%] bg-midnight relative overflow-hidden">
-                <div className="absolute top-[5%] right-[-8%] w-[80%] opacity-[0.15] mix-blend-lighten">
-                  <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
-                </div>
-              </div>
-            </div>
-            <div className="section-container relative z-10">
+          {/* Sector panels */}
+          {strategySectors.map((sector, i) => (
+            <div
+              key={sector.id}
+              className="strategy-panel min-h-screen flex items-center py-20 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20"
+            >
               <div className="max-w-[600px]">
                 <span className="panel-content text-dark-sand/25 text-6xl md:text-8xl font-black leading-none block mb-4">
                   0{i + 1}
@@ -187,29 +129,18 @@ export default function StrategySection() {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Progress strip — desktop only */}
-      <div className="hidden lg:block fixed bottom-0 left-0 right-0 z-40 pointer-events-none">
-        <div className="h-1 bg-white/[0.04]">
-          <div
-            ref={progressRef}
-            className="h-full bg-gradient-to-r from-dark-sand via-sand to-sand-light origin-left"
-            style={{ transform: "scaleX(0)" }}
-          />
-        </div>
-        <div className="section-container py-4 flex justify-between">
-          {strategySectors.map((sector) => (
-            <span
-              key={sector.id}
-              className="text-[10px] uppercase tracking-[0.2em] text-white/20 font-medium"
-            >
-              {sector.title}
-            </span>
           ))}
         </div>
+
+        {/* ─── RIGHT: Sticky dark side with logo shape ─── */}
+        <div className="hidden lg:block lg:w-[38%] relative">
+          <div className="sticky top-0 h-screen bg-midnight overflow-hidden">
+            <div className="absolute top-[5%] right-[-8%] w-[80%] opacity-[0.25] mix-blend-lighten">
+              <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
