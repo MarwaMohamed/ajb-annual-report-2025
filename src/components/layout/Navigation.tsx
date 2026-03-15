@@ -86,7 +86,7 @@ export default function Navigation() {
               <button
                 key={section.id}
                 onClick={() => scrollTo(section.id)}
-                className={`px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 rounded-sm ${
+                className={`px-3 py-1.5 text-sm font-medium tracking-wide transition-all duration-300 rounded-sm ${
                   activeSection === section.id
                     ? "text-sand bg-sand/10"
                     : "text-white/50 hover:text-white/80"
