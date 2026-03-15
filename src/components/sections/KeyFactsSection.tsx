@@ -48,7 +48,6 @@ function AnimatedBar({
     const st = ScrollTrigger.create({
       trigger: barRef.current,
       start: "top 85%",
-      once: true,
       onEnter: () => {
         // Animate bar fill
         gsap.to(fillRef.current, {
@@ -72,6 +71,10 @@ function AnimatedBar({
             },
           });
         }
+      },
+      onLeaveBack: () => {
+        gsap.set(fillRef.current, { width: "0%" });
+        if (valueRef.current) valueRef.current.textContent = `0${suffix}`;
       },
     });
 
@@ -122,7 +125,6 @@ function RevealBlock({
     const st = ScrollTrigger.create({
       trigger: ref.current,
       start: "top 85%",
-      once: true,
       onEnter: () => {
         gsap.to(ref.current, {
           opacity: 1,
@@ -131,6 +133,9 @@ function RevealBlock({
           delay,
           ease: "power3.out",
         });
+      },
+      onLeaveBack: () => {
+        gsap.set(ref.current, { opacity: 0, y: 60 });
       },
     });
 
@@ -210,7 +215,6 @@ function ComparisonBarRow({
     const st = ScrollTrigger.create({
       trigger: rowRef.current,
       start: "top 88%",
-      once: true,
       onEnter: () => {
         const delay = index * 0.12;
         // Fade in row
@@ -238,6 +242,11 @@ function ComparisonBarRow({
             ease: "power2.out",
           });
         }
+      },
+      onLeaveBack: () => {
+        gsap.set(rowRef.current, { opacity: 0, y: 20 });
+        if (leftBarRef.current) gsap.set(leftBarRef.current, { width: "0%" });
+        if (rightBarRef.current) gsap.set(rightBarRef.current, { width: "0%" });
       },
     });
 
