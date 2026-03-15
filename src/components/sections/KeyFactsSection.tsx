@@ -349,11 +349,11 @@ export default function KeyFactsSection() {
               {/* 3D rotating placeholder — will be replaced with real 3D logo */}
               <Rotating3DPlaceholder
                 scrollProgress={scrollProgress}
-                className="w-full h-80"
+                className="w-full h-48"
               />
 
               {/* Scroll to explore label */}
-              <div className="mt-10 text-center">
+              <div className="mt-4 text-center">
                 <p className="text-dark-sand/60 text-xs font-semibold uppercase tracking-[0.25em]">
                   Scroll to explore
                 </p>
