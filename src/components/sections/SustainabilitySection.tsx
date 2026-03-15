@@ -131,38 +131,41 @@ export default function SustainabilitySection() {
     <section
       id="sustainability"
       ref={sectionRef}
-      className="section-light relative overflow-hidden"
+      className="relative overflow-hidden bg-white z-10"
     >
       {/* ═══ Two-column layout: Image left | Content right ═══ */}
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* ─── LEFT: Sticky image with organic curved edge ─── */}
-        <div className="relative lg:w-[48%] xl:w-[50%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0">
+        <div className="relative lg:w-[58%] xl:w-[60%] lg:sticky lg:top-0 lg:h-screen flex-shrink-0 bg-white">
           {/* Hidden SVG clipPath — single smooth S-curve on right edge */}
           <svg className="absolute w-0 h-0" aria-hidden="true">
             <defs>
               <clipPath id="organic-curve" clipPathUnits="objectBoundingBox">
-                <path d="M 0,0 L 0.82,0 C 0.90,0.12 0.90,0.28 0.84,0.42 C 0.78,0.56 0.78,0.72 0.84,0.86 C 0.88,0.94 0.86,1.0 0.86,1.0 L 0,1 Z" />
+                <path d="M 0,0 L 0.93,0 C 0.93,0.06 0.92,0.14 0.88,0.22 C 0.82,0.32 0.74,0.40 0.68,0.47 C 0.65,0.52 0.65,0.57 0.68,0.62 C 0.74,0.72 0.84,0.80 0.90,0.88 C 0.94,0.94 0.96,1.0 0.96,1.0 L 0,1 Z" />
               </clipPath>
             </defs>
           </svg>
           <div
-            className="relative h-[50vh] lg:h-full w-[110%] -ml-[5%]"
+            className="relative h-[50vh] lg:h-full w-full"
             style={{ clipPath: 'url(#organic-curve)' }}
           >
-            <Image
-              src="/images/sustainability/sustainability-hero.png"
-              alt="AJB sustainability visual"
-              fill
-              className="object-cover object-[60%_center]"
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              priority
-            />
+            <div className="absolute inset-0 right-[40%] flex items-center justify-end">
+              <Image
+                src="/images/sustainability/woman-portrait.jpg"
+                alt="AJB sustainability visual"
+                width={500}
+                height={750}
+                className="w-auto h-[85%] object-contain"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         {/* ─── RIGHT: Scrollable content ─── */}
-        <div className="lg:w-[52%] xl:w-[50%] py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20">
+        <div className="lg:w-[42%] xl:w-[40%] py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-16 xl:px-20">
 
           {/* ── Section header ── */}
           <div className="content-block mb-16">
@@ -214,7 +217,7 @@ export default function SustainabilitySection() {
       {/* ═══ END two-column layout ═══ */}
 
       {/* ═══ Full-width centered sections below ═══ */}
-      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32">
+      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32 bg-white">
 
         {/* ── Social Impact ── */}
         <div className="content-block mb-20">

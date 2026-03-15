@@ -184,7 +184,7 @@ export default function StrategySection() {
       </div>
 
       {/* Progress strip — desktop only */}
-      <div className="hidden lg:block fixed bottom-0 left-0 right-0 z-40 pointer-events-none">
+      <div className="hidden lg:block fixed bottom-0 left-0 right-0 z-40 pointer-events-none bg-midnight">
         <div className="h-1 bg-white/[0.04]">
           <div
             ref={progressRef}
