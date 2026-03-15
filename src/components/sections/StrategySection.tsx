@@ -176,7 +176,7 @@ export default function StrategySection() {
 
         {/* ─── RIGHT: Fixed dark side with logo shape ─── */}
         <div className="hidden lg:block lg:w-[38%] lg:h-screen bg-midnight overflow-hidden">
-          <div className="absolute top-[5%] right-[-3%] w-[30%] opacity-100">
+          <div className="absolute top-[-5%] right-[-3%] w-[30%] opacity-100">
             <Image src="/images/shapes/kv-cmyk-3.png" alt="" width={800} height={1142} className="w-full h-auto" />
           </div>
         </div>
