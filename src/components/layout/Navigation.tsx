@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { sections } from "@/data/sections";
 import { BASE_PATH } from "@/lib/constants";
 
@@ -27,19 +27,26 @@ export default function Navigation() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Track active section — delay to let pinned sections register first
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-      sections.forEach((section) => {
-        ScrollTrigger.create({
-          trigger: `#${section.id}`,
-          start: "top 40%",
-          end: "bottom 40%",
-          onEnter: () => setActiveSection(section.id),
-          onEnterBack: () => setActiveSection(section.id),
-        });
-      });
-    }, 1000);
+    // Track active section by checking which section element is at the viewport center
+    const checkActiveSection = () => {
+      const viewportCenter = window.innerHeight / 2;
+      let current = "hero";
+
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        // If section top is above viewport center, it's the current one
+        if (rect.top <= viewportCenter) {
+          current = section.id;
+        }
+      }
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", checkActiveSection, { passive: true });
+    checkActiveSection(); // initial check
 
     // Initial fade in
     if (navRef.current) {
@@ -52,7 +59,7 @@ export default function Navigation() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
+      window.removeEventListener("scroll", checkActiveSection);
     };
   }, []);
 
