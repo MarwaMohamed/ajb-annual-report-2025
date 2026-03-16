@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig = {
-  output: 'export',
-  basePath: '/ajb-annual-report-2025',
+  ...(isGithubPages && {
+    output: 'export',
+    basePath: '/ajb-annual-report-2025',
+  }),
   images: {
     unoptimized: true,
   },

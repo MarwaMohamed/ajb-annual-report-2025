@@ -1,1 +1,1 @@
-export const BASE_PATH = '/ajb-annual-report-2025';
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
